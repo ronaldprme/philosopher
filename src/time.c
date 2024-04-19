@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:26 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/19 16:59:37 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:01:12 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,7 @@ int	has_philo_died(t_philo *philo)
 {
 	mutex_handle(&philo->table->mtx, LOCK);
 	if (philo->table->end)
-	{
-		mutex_handle(&philo->table->mtx, UNLOCK);
-		return (1);
-	}
+		return (mutex_handle(&philo->table->mtx, UNLOCK), 1);
 	if (elapsed_time_ms(philo->last_meal) >= philo->table->time_to_die)
 	{
 		philo->table->end = 1;

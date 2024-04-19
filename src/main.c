@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:16:12 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/19 17:14:08 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:42:19 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int	main(int ac, char **av)
 {
 	t_table	table;
 
-	if (ac != 5 && ac != 6)
-		return (printf(RED"Invalid number of arguments!\n"RST), 1);
-	if (ac >= 5)
+	if (ac == 5 || ac == 6)
 	{
 		parse_input(&table, av);
 		init_table(&table);
