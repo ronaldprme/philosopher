@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:16:51 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/19 15:26:46 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:16:06 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	philo_eat(t_philo *philo)
 		return (0);
 	}
 	increase_meal_counter(philo);
-	write_text("is eating", philo);
+	write_text(M"is eating"RST, philo);
 	if (custom_wait(philo->table->time_to_eat, philo, 1))
 		return (0);
 	if (philo->n_meals == philo->table->max_meals)
@@ -38,14 +38,14 @@ void	philo_think(t_philo *philo)
 {
 	if (has_philo_died(philo))
 		return ;
-	write_text("is thinking", philo);
+	write_text(B"is thinking"RST, philo);
 }
 
 void	philo_sleep(t_philo *philo)
 {
 	if (has_philo_died(philo))
 		return ;
-	write_text("is sleeping", philo);
+	write_text(G"is sleeping"RST, philo);
 	custom_wait(philo->table->time_to_sleep, philo, 2);
 }
 
@@ -74,8 +74,8 @@ void	*one_philo(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	write_text("has taken a fork", philo);
+	write_text(Y"has taken a fork"RST, philo);
 	usleep(philo->table->time_to_die * 1e3);
-	write_text("died", philo);
+	write_text(RED"died"RST, philo);
 	return (NULL);
 }

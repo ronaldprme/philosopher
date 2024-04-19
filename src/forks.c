@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:01 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/18 18:09:58 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:14:09 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	take_fork(t_philo *philo, t_fork *taken_fork)
 {
 	mutex_handle(&taken_fork->mtx, LOCK);
 	if (!has_philo_died(philo))
-		write_text("has taken a fork", philo);
+		write_text(Y"has taken a fork"RST, philo);
 }
 
 void	take_forks(t_philo *philo)

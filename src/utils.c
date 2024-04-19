@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:39 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/19 15:24:38 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:06:20 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ void	mutex_handle(t_mtx *mutex, t_opcode opcode)
 	else if (DESTROY == opcode)
 		pthread_mutex_destroy(mutex);
 	else
-		printf("Wrong code!\n");
+		printf(RED"Wrong code!\n"RST);
 }

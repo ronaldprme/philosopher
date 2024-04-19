@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:26 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/19 15:21:43 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:59:37 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	has_philo_died(t_philo *philo)
 	if (elapsed_time_ms(philo->last_meal) >= philo->table->time_to_die)
 	{
 		philo->table->end = 1;
-		write_text("died", philo);
+		write_text(RED"died"RST, philo);
 		mutex_handle(&philo->table->mtx, UNLOCK);
 		return (1);
 	}
