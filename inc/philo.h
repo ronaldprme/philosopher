@@ -22,6 +22,7 @@
 # include <limits.h>
 # include <errno.h>
 # include <limits.h>
+# include <stdbool.h>
 
 /*#define DI(...) fprintf(stderr, "File: %s, Function: %s, \
 		Line: %d ", __FILE__, __func__, __LINE__); \
@@ -38,13 +39,13 @@
 
 typedef enum e_opcode
 {
-	LOCK = 0,
-	UNLOCK = 1,
-	INIT = 2,
-	DESTROY = 3,
-	CREATE = 4,
-	JOIN = 5,
-	DETACH = 6,
+	LOCK,
+	UNLOCK,
+	INIT,
+	DESTROY,
+	CREATE,
+	JOIN,
+	DETACH,
 }		t_opcode;
 
 /*
@@ -92,9 +93,8 @@ typedef struct s_table
 	int			time_to_eat;
 	int			time_to_sleep;
 	int			max_meals;
-	int			end;
+	bool		end;
 	long long	dinner_start;
-	pthread_t	monitor_thread;
 	t_philo		*philos;
 	t_fork		*forks;
 	t_mtx		mtx;
@@ -114,8 +114,8 @@ void		init_threads(t_table *table);
 
 // *** Dinner ***
 int			philo_eat(t_philo *philo);
-void		philo_think(t_philo *philo);
-void		philo_sleep(t_philo *philo);
+int			philo_think(t_philo *philo);
+int			philo_sleep(t_philo *philo);
 void		*philosopher_routine(void *arg);
 void		*one_philo(void *arg);
 

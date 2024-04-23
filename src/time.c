@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:26 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/19 18:01:12 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:26:24 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ int	custom_wait(int wait_ms, t_philo *philo, int flag)
 		if (has_philo_died(philo))
 		{
 			if (flag == 1)
-			{
-				drop_forks(philo);
-				return (1);
-			}
+				return (drop_forks(philo), 1);
 			if (flag == 2)
 				return (1);
 		}
@@ -57,7 +54,7 @@ int	has_philo_died(t_philo *philo)
 		return (mutex_handle(&philo->table->mtx, UNLOCK), 1);
 	if (elapsed_time_ms(philo->last_meal) >= philo->table->time_to_die)
 	{
-		philo->table->end = 1;
+		philo->table->end = true;
 		write_text(RED"died"RST, philo);
 		mutex_handle(&philo->table->mtx, UNLOCK);
 		return (1);

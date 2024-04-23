@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:08 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/19 15:25:30 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:41:40 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_table(t_table *table)
 {
-	table->end = 0;
+	table->end = false;
 	table->dinner_start = current_time_ms();
 	table->philos = safe_malloc(table->n_philos * sizeof(t_philo));
 	table->forks = safe_malloc(table->n_philos * sizeof(t_fork));
@@ -47,7 +47,7 @@ void	init_philos(t_table *table)
 		table->philos[c].id = c + 1;
 		table->philos[c].last_meal = table->dinner_start;
 		table->philos[c].n_meals = 0;
-		table->philos[c].is_dead = 0;
+		table->philos[c].is_dead = false;
 		table->philos[c].left_fork = &table->forks[c];
 		table->philos[c].right_fork = &table->forks[(c + 1) % table->n_philos];
 		table->philos[c].table = table;
