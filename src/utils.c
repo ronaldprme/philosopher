@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:39 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/22 18:07:00 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/24 08:54:46 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,8 @@ void	increase_meal_counter(t_philo *philo)
 
 void	write_text(char *text, t_philo *philo)
 {
-	mutex_handle(&philo->table->log, LOCK);
+	safe_mutex_handle(&philo->table->log, LOCK);
 	printf("%lld %d %s\n", elapsed_time_ms(philo->table->dinner_start),
 		philo->id, text);
-	mutex_handle(&philo->table->log, UNLOCK);
-}
-
-void	mutex_handle(t_mtx *mutex, t_opcode opcode)
-{
-	if (LOCK == opcode)
-		pthread_mutex_lock(mutex);
-	else if (UNLOCK == opcode)
-		pthread_mutex_unlock(mutex);
-	else if (INIT == opcode)
-		pthread_mutex_init(mutex, NULL);
-	else if (DESTROY == opcode)
-		pthread_mutex_destroy(mutex);
-	else
-		printf(RED"Wrong code!\n"RST);
+	safe_mutex_handle(&philo->table->log, UNLOCK);
 }

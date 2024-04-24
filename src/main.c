@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:16:12 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/19 17:42:19 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/24 09:02:43 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	{
 		parse_input(&table, av);
 		init_table(&table);
-		init_threads(&table);
+		init_simulation(&table);
 		end_simulation(&table);
 	}
 	else

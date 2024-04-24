@@ -1,0 +1,8 @@
+--leak-check=full
+--show-leak-kinds=all
+--suppressions=leak.supp
+--track-origins=yes
+--track-fds=yes
+--show-reachable=yes
+--show-possibly-lost=yes
+--log-file=valgrind-out.txt

@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:08 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/23 15:41:40 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/24 09:03:05 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_forks(t_table *table)
 	c = 0;
 	while (c < table->n_philos)
 	{
-		mutex_handle(&table->forks[c].mtx, INIT);
+		safe_mutex_handle(&table->forks[c].mtx, INIT);
 		table->forks[c].id = c;
 		c++;
 	}
@@ -55,7 +55,7 @@ void	init_philos(t_table *table)
 	}
 }
 
-void	init_threads(t_table *table)
+void	init_simulation(t_table *table)
 {
 	int	c;
 

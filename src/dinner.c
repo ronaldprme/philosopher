@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:16:51 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/23 17:09:03 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/24 07:27:01 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,13 @@ int	philo_eat(t_philo *philo)
 {
 	take_forks(philo);
 	if (has_philo_died(philo))
-	{
-		drop_forks(philo);
-		return (0);
-	}
+		return (drop_forks(philo), 0);
 	increase_meal_counter(philo);
 	write_text(M"is eating"RST, philo);
 	if (custom_wait(philo->table->time_to_eat, philo, 1))
 		return (0);
 	if (philo->n_meals == philo->table->max_meals)
-	{
-		drop_forks(philo); 
-		return (0);
-	}
+		return (drop_forks(philo), 0);
 	philo->last_meal = current_time_ms();
 	drop_forks(philo);
 	return (1);

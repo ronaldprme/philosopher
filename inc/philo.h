@@ -110,7 +110,7 @@ void		parse_input(t_table *table, char **av);
 void		init_table(t_table *table);
 void		init_philos(t_table *table);
 void		init_forks(t_table *table);
-void		init_threads(t_table *table);
+void		init_simulation(t_table *table);
 
 // *** Dinner ***
 int			philo_eat(t_philo *philo);
@@ -142,7 +142,6 @@ int			is_digit(char ch);
 int			is_space(char ch);
 void		increase_meal_counter(t_philo *philo);
 void		write_text(char *text, t_philo *philo);
-void		mutex_handle(t_mtx *mutex, t_opcode opcode);
 
 //*** safe functions ***
 void		safe_thread_handle(pthread_t *thread, void *(*foo)(void *),

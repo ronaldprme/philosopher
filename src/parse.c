@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:17 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/19 16:20:27 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:29:35 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_valid_input(char *str)
 	if ((str[c] == '+' || str[c] == '-') && str[c])
 	{
 		if (str[c] == '-')
-			error_exit ("Feed only positive values");
+		error_exit ("Feed only positive values");
 		c++;
 	}
 	while (str[c])
@@ -44,6 +44,8 @@ int	ft_atol(char *str)
 	if (!is_valid_input(str))
 		return (0);
 	while (is_space(str[c]))
+		c++;
+	if (str[c] == '+')
 		c++;
 	while (is_digit(str[c]))
 	{
