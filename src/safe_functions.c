@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:59:03 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/19 16:20:45 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:24:11 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,5 @@ void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
 	else if (DETACH == opcode)
 		handle_thread_error(pthread_detach(*thread), opcode);
 	else
-		error_exit("Wrong opcode for thread_handle:"
-			" use <CREATE> <JOIN> <DETACH>");
+		error_exit("Wrong opcode for thread_handle");
 }

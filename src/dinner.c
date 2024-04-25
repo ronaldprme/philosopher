@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:16:51 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/24 07:27:01 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:41:20 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	philo_think(t_philo *philo)
 	long	t_eat;
 	long	t_sleep;
 	long	t_think;
+
 	if (has_philo_died(philo))
 		return (0);
 	t_eat = philo->table->time_to_eat;
@@ -57,15 +58,15 @@ int	philo_sleep(t_philo *philo)
 void	*philosopher_routine(void *arg)
 {
 	t_philo	*philo;
-	
+
 	philo = (t_philo *)arg;
 	philo->last_meal = current_time_ms();
 	if ((philo->id % 2) == 0 && philo->id != 1)
-		usleep(1.5e3); //evitar deadlock
+		usleep(1.5e3);
 	while (1)
 	{
 		if (!philo_think(philo))
-			break ;		
+			break ;
 		if (!philo_eat(philo))
 			break ;
 		if (!philo_sleep(philo))

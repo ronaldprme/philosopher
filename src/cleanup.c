@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:16:32 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/24 17:23:33 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:30:52 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	destroy_mutexes(t_table *table)
 	int	c;
 
 	c = 0;
-	safe_mutex_handle(&table->log, DESTROY);
+	safe_mutex_handle(&table->write_mutex, DESTROY);
 	while (c < table->n_philos)
 	{
 		safe_mutex_handle(&table->forks[c].mtx, DESTROY);

@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:08 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/24 09:03:05 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:31:17 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_table(t_table *table)
 	table->philos = safe_malloc(table->n_philos * sizeof(t_philo));
 	table->forks = safe_malloc(table->n_philos * sizeof(t_fork));
 	safe_mutex_handle(&table->mtx, INIT);
-	safe_mutex_handle(&table->log, INIT);
+	safe_mutex_handle(&table->write_mutex, INIT);
 	init_forks(table);
 	init_philos(table);
 }

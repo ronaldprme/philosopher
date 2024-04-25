@@ -98,12 +98,10 @@ typedef struct s_table
 	t_philo		*philos;
 	t_fork		*forks;
 	t_mtx		mtx;
-	t_mtx		log;
+	t_mtx		write_mutex;
 }	t_table;
 
 // *** Parse ***
-int			is_valid_input(char *str);
-int			ft_atol(char *str);
 void		parse_input(t_table *table, char **av);
 
 // *** Init ***
@@ -127,7 +125,6 @@ void		drop_forks(t_philo *philo);
 // *** Cleanup ***
 void		join_threads(t_table *table);
 void		destroy_mutexes(t_table *table);
-void		destroy_structures(t_table *table);
 void		end_simulation(t_table *table);
 void		clean(t_table *table);
 
@@ -138,8 +135,6 @@ int			custom_wait(int wait_ms, t_philo *philo, int action);
 int			has_philo_died(t_philo *philo);
 
 // *** Utils ***
-int			is_digit(char ch);
-int			is_space(char ch);
 void		increase_meal_counter(t_philo *philo);
 void		write_text(char *text, t_philo *philo);
 

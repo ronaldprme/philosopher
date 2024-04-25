@@ -6,55 +6,55 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:17 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/24 17:29:35 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:31:26 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-int	is_valid_input(char *str)
+static inline bool	is_space(char c)
 {
-	int	c;
-
-	c = 0;
-	while (is_space(str[c]) && str[c])
-		c++;
-	if ((str[c] == '+' || str[c] == '-') && str[c])
-	{
-		if (str[c] == '-')
-		error_exit ("Feed only positive values");
-		c++;
-	}
-	while (str[c])
-	{
-		if (!is_digit(str[c]))
-			error_exit("The input is not a correct digit");
-		c++;
-	}
-	return (1);
+	return ((c >= 9 && c <= 13) || 32 == c);
 }
 
-int	ft_atol(char *str)
+static inline bool	is_digit(char c)
 {
-	int		c;
-	long	ret;
+	return (c >= '0' && c <= '9');
+}
 
-	c = 0;
-	ret = 0;
-	if (!is_valid_input(str))
-		return (0);
-	while (is_space(str[c]))
-		c++;
-	if (str[c] == '+')
-		c++;
-	while (is_digit(str[c]))
-	{
-		ret = ret * 10 + (str[c] - '0');
-		if (ret >= INT_MAX || ret <= INT_MIN)
-			error_exit("INT_MAX is the limit");
-		c++;
-	}
-	return (ret);
+static const char	*valid_input(const char *str)
+{
+	int			len;
+	const char	*number;
+
+	len = 0;
+	while (is_space(*str))
+		++str;
+	if (*str == '+')
+		++str;
+	else if (*str == '-')
+		error_exit("Feed me only positive values");
+	if (!is_digit(*str))
+		error_exit("The input is not a correct digit");
+	number = str;
+	while (is_digit(*str++))
+		++len;
+	if (len > 10)
+		error_exit("The value is too big, INT_MAX is the limit");
+	return (number);
+}
+
+static long	ft_atol(const char *str)
+{
+	long	num;
+
+	num = 0;
+	str = valid_input(str);
+	while (is_digit(*str))
+		num = (num * 10) + (*str++ - '0');
+	if (num > INT_MAX)
+		error_exit("INT_MAX is the limit, not the sky");
+	return (num);
 }
 
 void	parse_input(t_table *table, char **av)
@@ -70,6 +70,11 @@ void	parse_input(t_table *table, char **av)
 	table->time_to_die = ft_atol(av[2]);
 	table->time_to_eat = ft_atol(av[3]);
 	table->time_to_sleep = ft_atol(av[4]);
+	if (table->time_to_die < 60
+		|| table->time_to_sleep < 60
+		|| table->time_to_eat < 60)
+		error_exit("Use timestamps major than 60ms");
+	
 	if (av[5])
 		table->max_meals = ft_atol(av[5]);
 	else
