@@ -6,12 +6,29 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:16:51 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/25 11:41:20 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/05/01 19:06:23 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+int	philo_think(t_philo *philo)
+{
+	long	t_eat;
+	long	t_sleep;
+	long	t_think;
+
+	if (has_philo_died(philo))
+		return (0);
+	t_eat = philo->table->time_to_eat;
+	t_sleep = philo->table->time_to_sleep;
+	t_think = (t_eat - t_sleep) * 0.42;
+	if (t_think < 0)
+		t_think = 0;
+	write_text(B"is thinking"RST, philo);
+	custom_wait(t_think, philo, 2);
+	return (1);
+}
 int	philo_eat(t_philo *philo)
 {
 	take_forks(philo);
@@ -28,23 +45,6 @@ int	philo_eat(t_philo *philo)
 	return (1);
 }
 
-int	philo_think(t_philo *philo)
-{
-	long	t_eat;
-	long	t_sleep;
-	long	t_think;
-
-	if (has_philo_died(philo))
-		return (0);
-	t_eat = philo->table->time_to_eat;
-	t_sleep = philo->table->time_to_sleep;
-	t_think = t_eat - t_sleep;
-	if (t_think < 0)
-		t_think = 0;
-	write_text(B"is thinking"RST, philo);
-	custom_wait(t_think * 0.42, philo, 2);
-	return (1);
-}
 
 int	philo_sleep(t_philo *philo)
 {
@@ -61,7 +61,7 @@ void	*philosopher_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	philo->last_meal = current_time_ms();
-	if ((philo->id % 2) == 0 && philo->id != 1)
+	if ((philo->id % 2) == 0)
 		usleep(1.5e3);
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: rprocopi <mailto:rprocopi@student.42lis    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:17 by rprocopi          #+#    #+#             */
-/*   Updated: 2024/04/25 17:31:26 by rprocopi         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:24:36 by rprocopi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static long	ft_atol(const char *str)
 	while (is_digit(*str))
 		num = (num * 10) + (*str++ - '0');
 	if (num > INT_MAX)
-		error_exit("INT_MAX is the limit, not the sky");
+		error_exit("INT_MAX is the limit for the input values");
 	return (num);
 }
 
